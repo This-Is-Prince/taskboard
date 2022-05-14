@@ -333,6 +333,10 @@ textarea {
   color: var(--clr-primary);
   border: 0.05rem solid var(--clr-primary);
 }
+
+.add-task-modal .date{
+  user-select: none;
+}
 .add-task-modal textarea {
   resize: none;
   background-color: rgb(233, 235, 237);

@@ -36,6 +36,14 @@ const AddTaskModal = () => {
           }}
           className="task-desc"
         ></textarea>
+        <input
+          type="date"
+          className="date"
+          onChange={(e) => {
+            const date = new Date(e.target.value);
+          }}
+          name=""
+        />
         <article>
           <button className="btn add">
             <ImCheckmark />
