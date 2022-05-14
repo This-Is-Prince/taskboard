@@ -15,7 +15,7 @@ const TaskLists = () => {
         <Tasks />
         <Tasks />
       </main>
-      {/* <AddTaskListModal /> */}
+      <AddTaskListModal />
     </>
   );
 };

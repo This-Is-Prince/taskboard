@@ -4,8 +4,8 @@ import { FaPlusCircle } from "react-icons/fa";
 const AddTaskListModal = () => {
   return (
     <section className="add-task-list-modal">
-      <form className="form">
-        <input type="text" className="input" />
+      <div>
+        <input type="text" placeholder="New list" />
         <button
           onClick={() => {
             console.log("add task list form");
@@ -14,7 +14,7 @@ const AddTaskListModal = () => {
         >
           <FaPlusCircle />
         </button>
-      </form>
+      </div>
     </section>
   );
 };

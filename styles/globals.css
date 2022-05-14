@@ -252,18 +252,34 @@ ADD TASK LIST CSS START
   inset: 0;
   z-index: 1;
   display: flex;
+  padding: 2rem;
   position: fixed;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 90, 180, 0.25);
 }
-.add-task-list-modal form {
-  display: flex;
-  padding: 1rem;
-  column-gap: 1rem;
+.add-task-list-modal div {
+  width: 100%;
+  display: grid;
+  padding: 1rem 2rem;
+  max-width: 500px;
   background-color: white;
+  grid-template-columns: 1fr auto;
 }
-/* .add-task-list */
+
+.add-task-list-modal input {
+  border: none;
+  outline: none;
+  padding: 0.5rem 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.2rem;
+  color: var(--clr-primary);
+}
+
+.add-task-list-modal .btn {
+  font-size: 2rem;
+  color: var(--clr-primary);
+}
 
 /* 
 ==============  
