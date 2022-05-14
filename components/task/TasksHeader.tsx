@@ -3,18 +3,18 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FaPlusCircle } from "react-icons/fa";
 const TasksHeader = () => {
   return (
-    <article className="tasks-header">
+    <article className="header">
       <span>My Tasks</span>
-      <button className="btn tasks-info-btn">
+      <button className="btn info-btn">
         <HiDotsVertical />
       </button>
-      <div className="add-a-task">
+      <div className="add-task">
         <button
           id="add-task"
           onClick={() => {
             console.log("HI");
           }}
-          className="btn add-task-btn"
+          className="btn"
         >
           <FaPlusCircle />
         </button>

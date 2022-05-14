@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlusCircle } from "react-icons/fa";
 
-const AddTaskList = () => {
+const AddTaskListButton = () => {
   return (
     <button className="btn add-task-list-btn">
       <FaPlusCircle />
@@ -9,4 +9,4 @@ const AddTaskList = () => {
   );
 };
 
-export default AddTaskList;
+export default AddTaskListButton;

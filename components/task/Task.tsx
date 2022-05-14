@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsCircle, BsCheckCircle } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+
 const Task = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [date, setDate] = useState(`3rd july, 2020`);
@@ -16,20 +17,18 @@ const Task = () => {
         onClick={() => {
           setIsChecked((prevIsChecked) => !prevIsChecked);
         }}
-        className={`btn task-complete-btn ${isChecked && "complete"}`}
+        className={`btn complete-btn ${isChecked && "complete"}`}
       >
         {isChecked ? <BsCheckCircle /> : <BsCircle />}
       </button>
-      <div className="task-header">
-        <span className={`task-name ${isChecked && "complete"}`}>
-          Campus build
-        </span>
+      <div className="header">
+        <span className={`name ${isChecked && "complete"}`}>Campus build</span>
         {isChecked ? (
-          <button className="btn task-delete-btn">
+          <button className="btn delete-btn">
             <MdDeleteForever />
           </button>
         ) : (
-          <button className="btn task-edit-btn">
+          <button className="btn edit-btn">
             <FaEdit />
           </button>
         )}
@@ -37,9 +36,9 @@ const Task = () => {
       {desc === "" && date === "" ? (
         ""
       ) : (
-        <div className="task-info">
-          {desc !== "" && <p className="task-desc">{desc}</p>}
-          {date !== "" && <span className="task-date">{date}</span>}
+        <div className="info">
+          {desc !== "" && <p className="desc">{desc}</p>}
+          {date !== "" && <span className="date">{date}</span>}
         </div>
       )}
     </article>

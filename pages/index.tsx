@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import AddTaskList from "../components/task/AddTaskList";
+import AddTaskListButton from "../components/task/AddTaskListButton";
 import Header from "../components/Header";
 import TaskLists from "../components/task/TaskLists";
 
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <TaskLists />
-      <AddTaskList />
+      <AddTaskListButton />
     </div>
   );
 };

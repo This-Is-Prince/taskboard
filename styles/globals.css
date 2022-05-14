@@ -125,7 +125,7 @@ TASK LISTS CSS START
   color: var(--clr-primary);
   border: 0.1rem solid var(--clr-primary);
 }
-.tasks-header {
+.tasks > .header {
   display: grid;
   row-gap: 1rem;
   padding: 0.75rem;
@@ -133,15 +133,15 @@ TASK LISTS CSS START
   border-bottom: 0.1rem solid var(--clr-primary);
 }
 
-.tasks-header span {
+.tasks .header span {
   font-size: 0.85rem;
 }
-.tasks-info-btn {
+.tasks .info-btn {
   justify-self: flex-end;
   color: var(--clr-primary);
 }
 
-.add-a-task {
+.add-task {
   display: flex;
   column-gap: 1rem;
   grid-area: 2/1/3/3;
@@ -149,12 +149,12 @@ TASK LISTS CSS START
   align-items: center;
 }
 
-.add-a-task label {
+.add-task label {
   cursor: pointer;
   user-select: none;
 }
 
-.add-task-btn {
+.add-task .btn {
   font-size: 1.5rem;
   color: var(--clr-primary);
 }
@@ -178,41 +178,41 @@ TASK LISTS CSS START
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.task-complete-btn {
+.task .complete-btn {
   grid-area: 1/1/2/2;
   font-size: 1.75rem;
 }
-.task-header {
+.task .header {
   display: flex;
   grid-area: 1/2/2/3;
   justify-content: space-between;
 }
 
-.task-header button {
+.task .header button {
   font-size: 1.25rem;
 }
-.task-complete-btn {
+.task .complete-btn {
   color: var(--clr-primary);
 }
-.task-delete-btn {
+.task .delete-btn {
   color: hsl(354, 61%, 45%);
 }
-.task-edit-btn {
+.task .edit-btn {
   color: hsl(45, 94%, 45%);
 }
-.task-info {
+.task .info {
   display: flex;
   row-gap: 1rem;
   grid-area: 2/2/3/3;
   flex-direction: column;
 }
-.task-desc {
+.task .desc {
   line-height: 1rem;
   font-size: 0.75rem;
   text-align: justify;
   letter-spacing: 0.1rem;
 }
-.task-date {
+.task .date {
   font-weight: 600;
   font-size: 0.65rem;
   align-self: flex-start;
@@ -241,5 +241,32 @@ TASK LISTS CSS START
 /* 
 ==============  
 TASK LISTS CSS END
+==============
+*/
+/* 
+==============  
+ADD TASK LIST CSS START
+==============
+*/
+.add-task-list-modal {
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 90, 180, 0.25);
+}
+.add-task-list-modal form {
+  display: flex;
+  padding: 1rem;
+  column-gap: 1rem;
+  background-color: white;
+}
+/* .add-task-list */
+
+/* 
+==============  
+ADD TASK LIST CSS END
 ==============
 */
