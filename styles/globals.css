@@ -245,9 +245,10 @@ TASK LISTS CSS END
 */
 /* 
 ==============  
-ADD TASK LIST CSS START
+ADD TASK LIST MODAL CSS START
 ==============
 */
+.add-task-modal,
 .add-task-list-modal {
   inset: 0;
   z-index: 1;
@@ -292,6 +293,60 @@ ADD TASK LIST CSS START
 
 /* 
 ==============  
-ADD TASK LIST CSS END
+ADD TASK LIST MODAL CSS END
+==============
+*/
+
+/* 
+==============  
+ADD TASK MODAL CSS END
+==============
+*/
+.add-task-modal div {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 1rem;
+  row-gap: 1rem;
+  max-width: 400px;
+  max-height: 400px;
+  position: relative;
+  flex-direction: column;
+  background-color: white;
+  grid-template-rows: auto auto 1fr auto;
+}
+.add-task-modal .header {
+  display: flex;
+  color: var(--clr-primary);
+  justify-content: space-between;
+}
+.add-task-modal .close {
+  font-size: 1.25rem;
+  color: var(--clr-primary);
+}
+.add-task-modal input,
+textarea {
+  outline: none;
+  padding: 0.75rem;
+  letter-spacing: 0.2rem;
+  color: var(--clr-primary);
+  color: var(--clr-primary);
+  border: 0.05rem solid var(--clr-primary);
+}
+.add-task-modal textarea {
+  resize: none;
+  background-color: rgb(233, 235, 237);
+}
+.add-task-modal article:last-child {
+  display: flex;
+  justify-content: center;
+}
+.add-task-modal .add {
+  font-size: 2rem;
+  color: var(--clr-primary);
+}
+/* 
+==============  
+ADD TASK MODAL CSS END
 ==============
 */

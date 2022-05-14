@@ -1,5 +1,6 @@
 import React from "react";
 import AddTaskListModal from "./AddTaskListModal";
+import AddTaskModal from "./AddTaskModal";
 import Tasks from "./Tasks";
 
 const TaskLists = () => {
@@ -15,7 +16,8 @@ const TaskLists = () => {
         <Tasks />
         <Tasks />
       </main>
-      <AddTaskListModal />
+      {/* <AddTaskListModal /> */}
+      <AddTaskModal />
     </>
   );
 };
