@@ -6,7 +6,7 @@ import Tasks from "./Tasks";
 
 const TaskLists = () => {
   const {
-    appState: { isAddTaskListModalOpen, tasks_list },
+    appState: { isAddTaskListModalOpen, tasks_list, isAddTaskModalOpen },
     dispatch,
   } = useGlobalContext()!;
   return (
@@ -25,7 +25,7 @@ const TaskLists = () => {
         })}
       </main>
       {isAddTaskListModalOpen && <AddTaskListModal />}
-      {/* <AddTaskModal /> */}
+      {isAddTaskModalOpen && <AddTaskModal />}
     </>
   );
 };

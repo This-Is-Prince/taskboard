@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { BsClipboardPlus, BsClipboardMinus } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { ImCheckmark } from "react-icons/im";
+import useGlobalContext from "../../app/context";
 
 const AddTaskModal = () => {
-  const [name, setName] = useState("Campus build");
-  const [desc, setDesc] = useState("");
+  const {
+    appState: {
+      task: { date, desc, title },
+    },
+    dispatch,
+  } = useGlobalContext()!;
+
   return (
     <section className="add-task-modal">
       <div>
@@ -20,9 +26,12 @@ const AddTaskModal = () => {
         <input
           type="text"
           placeholder="Add name"
-          value={name}
+          value={title}
           onChange={(e) => {
-            setName(e.target.value);
+            dispatch({
+              type: "SET_TASK",
+              payload: { type: "NAME", value: e.target.value },
+            });
           }}
           className="task-name"
         />
@@ -32,20 +41,32 @@ const AddTaskModal = () => {
           placeholder="Add details"
           value={desc}
           onChange={(e) => {
-            setDesc(e.target.value);
+            dispatch({
+              type: "SET_TASK",
+              payload: { type: "DESC", value: e.target.value },
+            });
           }}
           className="task-desc"
         ></textarea>
         <input
           type="date"
           className="date"
+          value={date}
           onChange={(e) => {
-            const date = new Date(e.target.value);
+            dispatch({
+              type: "SET_TASK",
+              payload: { type: "DATE", value: e.target.value },
+            });
           }}
           name=""
         />
         <article>
-          <button className="btn add">
+          <button
+            onClick={() => {
+              dispatch({ type: "ADD_TASK" });
+            }}
+            className="btn add"
+          >
             <ImCheckmark />
           </button>
         </article>

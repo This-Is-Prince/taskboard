@@ -8,7 +8,7 @@ interface Tasks {
 }
 
 interface Task {
-  date: Date;
+  date: string;
   desc: string;
   title: string;
   id: string | number;
@@ -28,7 +28,7 @@ interface TasksProps {
 }
 
 interface TaskProps {
-  date: Date;
+  date: string;
   desc: string;
   title: string;
   isCompleted: boolean;
@@ -37,8 +37,11 @@ interface TaskProps {
 }
 
 interface State {
+  task: Task;
   tasks_list: Tasks[];
   tasks_title: string;
+  tasks_id: string | number;
+  isAddTaskModalOpen: boolean;
   isAddTaskListModalOpen: boolean;
 }
 
@@ -57,7 +60,16 @@ type Action =
       };
     }
   | { type: "ADD_TASKS_TITLE"; payload: string }
-  | { type: "ADD_TASKS" };
+  | { type: "ADD_TASKS" }
+  | { type: "ADD_TASK" }
+  | { type: "OPEN_ADD_TASK_MODAL"; payload: string | number }
+  | {
+      type: "SET_TASK";
+      payload:
+        | { type: "NAME" | "DESC"; value: string }
+        | { type: "DATE"; value: string }
+        | { type: "COMPLETED"; value: boolean };
+    };
 
 interface ContextProps {
   appState: State;

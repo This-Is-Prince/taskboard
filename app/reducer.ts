@@ -1,5 +1,5 @@
 import { useReducer, Reducer } from "react";
-import { Action, State, Tasks } from "../types/types";
+import { Action, State, Task, Tasks } from "../types/types";
 import state from "./state";
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -9,14 +9,14 @@ const reducer: Reducer<State, Action> = (state, action) => {
     case "DELETE_TASKS":
       return {
         ...state,
-        task_lists: state.tasks_list.filter(({ id }) => {
+        tasks_list: state.tasks_list.filter(({ id }) => {
           return id !== action.payload;
         }),
       };
     case "TASK_IS_COMPLETED":
       return {
         ...state,
-        task_lists: state.tasks_list.map((tasks) => {
+        tasks_list: state.tasks_list.map((tasks) => {
           const { task_id, tasks_id, value } = action.payload;
           if (tasks.id === tasks_id) {
             const result = tasks.all_task.map((task) => {
@@ -63,6 +63,43 @@ const reducer: Reducer<State, Action> = (state, action) => {
         tasks_title: "",
         isAddTaskListModalOpen: false,
       };
+    case "ADD_TASK":
+      return {
+        ...state,
+        isAddTaskModalOpen: false,
+        tasks_list: state.tasks_list.map((tasks) => {
+          if (tasks.id === state.tasks_id) {
+            return {
+              ...tasks,
+              all_task: [
+                ...tasks.all_task,
+                { ...state.task, id: tasks.all_task.length },
+              ],
+            };
+          } else {
+            return { ...tasks };
+          }
+        }),
+        task: { title: "", date: "", desc: "", id: 0, isCompleted: false },
+        tasks_id: 0,
+      };
+    case "OPEN_ADD_TASK_MODAL":
+      return { ...state, isAddTaskModalOpen: true, tasks_id: action.payload };
+
+    case "SET_TASK":
+      const { type, value } = action.payload;
+      switch (type) {
+        case "NAME":
+          return { ...state, task: { ...state.task, title: value } };
+        case "DESC":
+          return { ...state, task: { ...state.task, desc: value } };
+        case "DATE":
+          return { ...state, task: { ...state.task, date: value } };
+        case "COMPLETED":
+          return { ...state, task: { ...state.task, isCompleted: value } };
+        default:
+          return { ...state };
+      }
     default:
       return state;
   }

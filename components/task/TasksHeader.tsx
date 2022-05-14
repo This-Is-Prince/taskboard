@@ -19,15 +19,15 @@ const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
       </button>
       <div className="add-task">
         <button
-          id="add-task"
+          id={`add-task-${id}`}
           onClick={() => {
-            console.log("HI");
+            dispatch({ type: "OPEN_ADD_TASK_MODAL", payload: id });
           }}
           className="btn"
         >
           <AiFillPlusCircle />
         </button>
-        <label htmlFor="add-task">Add a task</label>
+        <label htmlFor={`add-task-${id}`}>Add a task</label>
       </div>
     </article>
   );

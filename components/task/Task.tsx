@@ -39,16 +39,12 @@ const Task: FC<TaskProps> = ({
           </button>
         )}
       </div>
-      {desc === "" && date === null ? (
+      {desc === "" && date === "" ? (
         ""
       ) : (
         <div className="info">
           {desc !== "" && <p className="desc">{desc}</p>}
-          {date !== null && (
-            <span className="date">
-              {date.getDate()} / {date.getMonth() + 1} / {date.getFullYear()}
-            </span>
-          )}
+          {date !== "" && <span className="date">{date}</span>}
         </div>
       )}
     </article>

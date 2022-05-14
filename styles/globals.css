@@ -225,6 +225,9 @@ TASK LISTS CSS START
 .complete {
   color: hsl(134, 61%, 45%);
 }
+.task .complete {
+  color: hsl(134, 61%, 45%);
+}
 /* TASK CSS END */
 @media screen and (max-width: 1170px) {
   .task-lists {
