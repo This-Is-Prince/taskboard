@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import AddTaskList from "../components/AddTaskList";
 import Header from "../components/Header";
+import TaskLists from "../components/TaskLists";
 
 const Home: NextPage = () => {
   return (
@@ -15,6 +17,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <TaskLists />
+      <AddTaskList />
     </div>
   );
 };

@@ -14,7 +14,7 @@ const Header = () => {
     });
   }, []);
   return (
-    <header className="header">
+    <header className="main-header">
       <section className="website-info">
         <Image
           src={"/checklist.svg"}
