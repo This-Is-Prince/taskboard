@@ -1,13 +1,73 @@
-interface State {}
+import { Dispatch } from "react";
 
-interface Action {
-  type: string;
-  payload: any;
+interface Tasks {
+  title: string;
+  all_task: Task[];
+  id: string | number;
+  total_completed: number;
 }
+
+interface Task {
+  date: Date;
+  desc: string;
+  title: string;
+  id: string | number;
+  isCompleted: boolean;
+}
+
+interface TasksHeaderProps {
+  title: string;
+  id: string | number;
+}
+
+interface TasksProps {
+  title: string;
+  all_task: Task[];
+  id: string | number;
+  total_completed: number;
+}
+
+interface TaskProps {
+  date: Date;
+  desc: string;
+  title: string;
+  isCompleted: boolean;
+  task_id: string | number;
+  tasks_id: string | number;
+}
+
+interface State {
+  task_lists: Tasks[];
+  isAddTaskListModalOpen: boolean;
+}
+
+type Action =
+  | {
+      type: "OPEN_ADD_TASK_LIST_MODAL";
+      payload: boolean;
+    }
+  | { type: "DELETE_TASKS"; payload: string | number }
+  | {
+      type: "TASK_IS_COMPLETED";
+      payload: {
+        value: boolean;
+        task_id: string | number;
+        tasks_id: string | number;
+      };
+    };
 
 interface ContextProps {
   appState: State;
   dispatch: Dispatch<Action>;
 }
 
-export { State, Action, ContextProps };
+export {
+  Task,
+  Tasks,
+  State,
+  Action,
+  TaskProps,
+  TasksProps,
+  ContextProps,
+  TasksHeaderProps,
+};

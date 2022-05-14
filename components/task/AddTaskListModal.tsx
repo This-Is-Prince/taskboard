@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import { FiDelete } from "react-icons/fi";
+import useGlobalContext from "../../app/context";
 
 const AddTaskListModal = () => {
+  const {
+    appState: { isAddTaskListModalOpen },
+    dispatch,
+  } = useGlobalContext()!;
   const [value, setValue] = useState("");
   return (
     <section className="add-task-list-modal">
@@ -32,7 +37,12 @@ const AddTaskListModal = () => {
         >
           <AiFillPlusCircle />
         </button>
-        <button className="btn close-btn">
+        <button
+          onClick={() => {
+            dispatch({ type: "OPEN_ADD_TASK_LIST_MODAL", payload: false });
+          }}
+          className="btn close-btn"
+        >
           <IoMdClose />
         </button>
       </div>

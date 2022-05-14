@@ -136,6 +136,9 @@ TASK LISTS CSS START
 .tasks .header span {
   font-size: 0.85rem;
 }
+.tasks .header > button {
+  font-size: 1.25rem;
+}
 .tasks .info-btn {
   justify-self: flex-end;
   color: var(--clr-primary);
@@ -334,7 +337,7 @@ textarea {
   border: 0.05rem solid var(--clr-primary);
 }
 
-.add-task-modal .date{
+.add-task-modal .date {
   user-select: none;
 }
 .add-task-modal textarea {
