@@ -19,13 +19,15 @@ const Header = () => {
         <Image
           src={"/checklist.svg"}
           alt="website logo"
-          width={50}
-          height={50}
+          width={60}
+          height={60}
         />
         <h1>TasksBoard</h1>
       </section>
       <section className="user-icon">
-        <img src={avatarUrl} alt="website logo" width={50} height={50} />
+        {avatarUrl !== "" && (
+          <Image src={avatarUrl} alt="avatar" width={60} height={60} />
+        )}
       </section>
     </header>
   );

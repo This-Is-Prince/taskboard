@@ -36,12 +36,14 @@ HEADER CSS START
 */
 .main-header {
   display: flex;
-  padding: 1rem 4rem;
   align-items: center;
+  padding: 1.25rem 4rem;
   justify-content: space-between;
   background-color: var(--clr-primary);
 }
-
+.website-info h1 {
+  font-size: 1.75rem;
+}
 .website-info {
   display: flex;
   color: white;
@@ -50,15 +52,37 @@ HEADER CSS START
   font-family: "Courier New", Courier, monospace;
 }
 
-.user-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-}
+.user-icon,
 .user-icon img {
   border-radius: 100%;
 }
 
+@media screen and (max-width: 1170px) {
+  .main-header {
+    padding: 1rem 3rem;
+  }
+  .website-info h1 {
+    font-size: 1.5rem;
+  }
+  .website-info img,
+  .user-icon {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-header {
+    padding: 0.75rem 2rem;
+  }
+  .website-info h1 {
+    font-size: 1.25rem;
+  }
+  .website-info img,
+  .user-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
 /* 
 ==============  
 HEADER CSS END
