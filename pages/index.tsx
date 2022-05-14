@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import AddTaskList from "../components/AddTaskList";
+import AddTaskList from "../components/task/AddTaskList";
 import Header from "../components/Header";
-import TaskLists from "../components/TaskLists";
+import TaskLists from "../components/task/TaskLists";
 
 const Home: NextPage = () => {
   return (

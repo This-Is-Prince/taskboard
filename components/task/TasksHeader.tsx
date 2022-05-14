@@ -1,17 +1,14 @@
 import React from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { FaPlusCircle } from "react-icons/fa";
-
-const TaskList = () => {
+const TasksHeader = () => {
   return (
-    <section className="task-list">
-      <article className="task-list-header">
-        <span>My Tasks</span>
-        <button className="btn task-list-info-btn">
-          <HiDotsVertical />
-        </button>
-      </article>
-      <article className="add-a-task">
+    <article className="tasks-header">
+      <span>My Tasks</span>
+      <button className="btn tasks-info-btn">
+        <HiDotsVertical />
+      </button>
+      <div className="add-a-task">
         <button
           id="add-task"
           onClick={() => {
@@ -22,9 +19,9 @@ const TaskList = () => {
           <FaPlusCircle />
         </button>
         <label htmlFor="add-task">Add a task</label>
-      </article>
-    </section>
+      </div>
+    </article>
   );
 };
 
-export default TaskList;
+export default TasksHeader;
