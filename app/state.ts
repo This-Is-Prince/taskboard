@@ -1,8 +1,9 @@
 import { State } from "../types/types";
 
 const state: State = {
+  tasks_title: "",
   isAddTaskListModalOpen: false,
-  task_lists: [
+  tasks_list: [
     {
       id: 0,
       title: "My Tasks",

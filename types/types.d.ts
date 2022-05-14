@@ -37,7 +37,8 @@ interface TaskProps {
 }
 
 interface State {
-  task_lists: Tasks[];
+  tasks_list: Tasks[];
+  tasks_title: string;
   isAddTaskListModalOpen: boolean;
 }
 
@@ -54,7 +55,9 @@ type Action =
         task_id: string | number;
         tasks_id: string | number;
       };
-    };
+    }
+  | { type: "ADD_TASKS_TITLE"; payload: string }
+  | { type: "ADD_TASKS" };
 
 interface ContextProps {
   appState: State;

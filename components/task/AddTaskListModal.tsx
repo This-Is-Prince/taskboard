@@ -6,24 +6,23 @@ import useGlobalContext from "../../app/context";
 
 const AddTaskListModal = () => {
   const {
-    appState: { isAddTaskListModalOpen },
+    appState: { tasks_title },
     dispatch,
   } = useGlobalContext()!;
-  const [value, setValue] = useState("");
   return (
     <section className="add-task-list-modal">
       <div>
         <input
-          value={value}
+          value={tasks_title}
           onChange={(e) => {
-            setValue(e.target.value);
+            dispatch({ type: "ADD_TASKS_TITLE", payload: e.target.value });
           }}
           type="text"
           placeholder="New list"
         />
         <button
           onClick={() => {
-            setValue("");
+            dispatch({ type: "ADD_TASKS_TITLE", payload: "" });
           }}
           className="btn"
         >
@@ -31,7 +30,7 @@ const AddTaskListModal = () => {
         </button>
         <button
           onClick={() => {
-            console.log("add task list form");
+            dispatch({ type: "ADD_TASKS" });
           }}
           className="btn"
         >

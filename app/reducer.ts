@@ -1,5 +1,5 @@
 import { useReducer, Reducer } from "react";
-import { Action, State } from "../types/types";
+import { Action, State, Tasks } from "../types/types";
 import state from "./state";
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -9,14 +9,14 @@ const reducer: Reducer<State, Action> = (state, action) => {
     case "DELETE_TASKS":
       return {
         ...state,
-        task_lists: state.task_lists.filter(({ id }) => {
+        task_lists: state.tasks_list.filter(({ id }) => {
           return id !== action.payload;
         }),
       };
     case "TASK_IS_COMPLETED":
       return {
         ...state,
-        task_lists: state.task_lists.map((tasks) => {
+        task_lists: state.tasks_list.map((tasks) => {
           const { task_id, tasks_id, value } = action.payload;
           if (tasks.id === tasks_id) {
             const result = tasks.all_task.map((task) => {
@@ -44,6 +44,24 @@ const reducer: Reducer<State, Action> = (state, action) => {
             return { ...tasks };
           }
         }),
+      };
+    case "ADD_TASKS_TITLE":
+      return { ...state, tasks_title: action.payload };
+    case "ADD_TASKS":
+      const tasks_list: Tasks[] = [
+        ...state.tasks_list,
+        {
+          all_task: [],
+          total_completed: 0,
+          title: state.tasks_title,
+          id: state.tasks_list.length,
+        },
+      ];
+      return {
+        ...state,
+        tasks_list,
+        tasks_title: "",
+        isAddTaskListModalOpen: false,
       };
     default:
       return state;

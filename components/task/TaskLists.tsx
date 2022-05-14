@@ -6,13 +6,13 @@ import Tasks from "./Tasks";
 
 const TaskLists = () => {
   const {
-    appState: { isAddTaskListModalOpen, task_lists },
+    appState: { isAddTaskListModalOpen, tasks_list },
     dispatch,
   } = useGlobalContext()!;
   return (
     <>
       <main className="task-lists">
-        {task_lists.map(({ all_task, title, total_completed, id }) => {
+        {tasks_list.map(({ all_task, title, total_completed, id }) => {
           return (
             <Tasks
               id={id}
