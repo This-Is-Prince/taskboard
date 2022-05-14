@@ -219,7 +219,7 @@ TASK LISTS CSS START
   padding: 0.25rem 0.75rem;
   background-color: rgb(233, 235, 237);
 }
-.task .complete {
+.complete {
   color: hsl(134, 61%, 45%);
 }
 /* TASK CSS END */

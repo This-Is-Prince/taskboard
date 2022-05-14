@@ -4,6 +4,11 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 const Task = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [date, setDate] = useState(`3rd july, 2020`);
+  const [desc, setDesc] =
+    useState(`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem quas
+          dignissimos perferendis architecto natus possimus repellendus
+          deserunt, blanditiis optio? Modi?`);
 
   return (
     <article className="task">
@@ -29,14 +34,14 @@ const Task = () => {
           </button>
         )}
       </div>
-      <div className="task-info">
-        <p className="task-desc">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem quas
-          dignissimos perferendis architecto natus possimus repellendus
-          deserunt, blanditiis optio? Modi?
-        </p>
-        <span className="task-date">3rd july, 2020</span>
-      </div>
+      {desc === "" && date === "" ? (
+        ""
+      ) : (
+        <div className="task-info">
+          {desc !== "" && <p className="task-desc">{desc}</p>}
+          {date !== "" && <span className="task-date">{date}</span>}
+        </div>
+      )}
     </article>
   );
 };
