@@ -1,6 +1,7 @@
 import React from "react";
 import { HiDotsVertical } from "react-icons/hi";
-import { FaPlusCircle } from "react-icons/fa";
+import { AiFillPlusCircle } from "react-icons/ai";
+
 const TasksHeader = () => {
   return (
     <article className="header">
@@ -16,7 +17,7 @@ const TasksHeader = () => {
           }}
           className="btn"
         >
-          <FaPlusCircle />
+          <AiFillPlusCircle />
         </button>
         <label htmlFor="add-task">Add a task</label>
       </div>

@@ -261,10 +261,12 @@ ADD TASK LIST CSS START
 .add-task-list-modal div {
   width: 100%;
   display: grid;
-  padding: 1rem 2rem;
   max-width: 500px;
+  position: relative;
+  column-gap: 0.5rem;
+  padding: 1rem 2rem;
   background-color: white;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
 }
 
 .add-task-list-modal input {
@@ -279,6 +281,13 @@ ADD TASK LIST CSS START
 .add-task-list-modal .btn {
   font-size: 2rem;
   color: var(--clr-primary);
+}
+
+.add-task-list-modal .close-btn {
+  top: -1rem;
+  right: -1rem;
+  position: absolute;
+  color: hsl(354, 61%, 45%);
 }
 
 /* 

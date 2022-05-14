@@ -1,10 +1,10 @@
 import React from "react";
-import { FaPlusCircle } from "react-icons/fa";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 const AddTaskListButton = () => {
   return (
     <button className="btn add-task-list-btn">
-      <FaPlusCircle />
+      <AiFillPlusCircle />
     </button>
   );
 };
