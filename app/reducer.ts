@@ -83,8 +83,45 @@ const reducer: Reducer<State, Action> = (state, action) => {
         task: { title: "", date: "", desc: "", id: 0, isCompleted: false },
         tasks_id: 0,
       };
+    case "EDIT_TASK":
+      return {
+        ...state,
+        isAddTaskModalOpen: false,
+        tasks_list: state.tasks_list.map((tasks) => {
+          if (tasks.id === state.tasks_id) {
+            return {
+              ...tasks,
+              all_task: tasks.all_task.map((task) => {
+                if (task.id === state.task.id) {
+                  return { ...state.task };
+                } else {
+                  return { ...task };
+                }
+              }),
+            };
+          } else {
+            return { ...tasks };
+          }
+        }),
+        task: { title: "", date: "", desc: "", id: 0, isCompleted: false },
+        tasks_id: 0,
+      };
     case "OPEN_ADD_TASK_MODAL":
-      return { ...state, isAddTaskModalOpen: true, tasks_id: action.payload };
+      return {
+        ...state,
+        why: action.why,
+        tasks_id: action.id,
+        task: action.payload,
+        isAddTaskModalOpen: true,
+      };
+    case "CLOSE_ADD_TASK_MODAL":
+      return {
+        ...state,
+        isAddTaskModalOpen: false,
+        tasks_id: 0,
+        why: "FOR_ADD",
+        task: { date: "", desc: "", id: 0, isCompleted: false, title: "" },
+      };
 
     case "SET_TASK":
       const { type, value } = action.payload;

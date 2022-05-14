@@ -5,7 +5,10 @@ import { TasksHeaderProps } from "../../types/types";
 import useGlobalContext from "../../app/context";
 
 const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
-  const { dispatch } = useGlobalContext()!;
+  const {
+    appState: { task },
+    dispatch,
+  } = useGlobalContext()!;
   return (
     <article className="header">
       <span>{title}</span>
@@ -21,7 +24,12 @@ const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
         <button
           id={`add-task-${id}`}
           onClick={() => {
-            dispatch({ type: "OPEN_ADD_TASK_MODAL", payload: id });
+            dispatch({
+              type: "OPEN_ADD_TASK_MODAL",
+              id,
+              why: "FOR_ADD",
+              payload: { ...task },
+            });
           }}
           className="btn"
         >

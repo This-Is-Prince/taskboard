@@ -35,8 +35,9 @@ interface TaskProps {
   task_id: string | number;
   tasks_id: string | number;
 }
-
+type Why = "FOR_EDIT" | "FOR_ADD";
 interface State {
+  why: Why;
   task: Task;
   tasks_list: Tasks[];
   tasks_title: string;
@@ -62,7 +63,14 @@ type Action =
   | { type: "ADD_TASKS_TITLE"; payload: string }
   | { type: "ADD_TASKS" }
   | { type: "ADD_TASK" }
-  | { type: "OPEN_ADD_TASK_MODAL"; payload: string | number }
+  | { type: "EDIT_TASK" }
+  | {
+      type: "OPEN_ADD_TASK_MODAL";
+      id: string | number;
+      payload: Task;
+      why: Why;
+    }
+  | { type: "CLOSE_ADD_TASK_MODAL" }
   | {
       type: "SET_TASK";
       payload:

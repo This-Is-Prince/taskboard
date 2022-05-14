@@ -34,7 +34,17 @@ const Task: FC<TaskProps> = ({
             <MdDeleteForever />
           </button>
         ) : (
-          <button className="btn edit-btn">
+          <button
+            onClick={() => {
+              dispatch({
+                type: "OPEN_ADD_TASK_MODAL",
+                id: tasks_id,
+                why: "FOR_EDIT",
+                payload: { date, desc, id: task_id, isCompleted, title },
+              });
+            }}
+            className="btn edit-btn"
+          >
             <FaEdit />
           </button>
         )}
