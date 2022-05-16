@@ -3,6 +3,7 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import { FiDelete } from "react-icons/fi";
 import useGlobalContext from "../../app/context";
+import { Tasks } from "../../types/types";
 
 const AddTaskListModal = () => {
   const {
@@ -17,6 +18,21 @@ const AddTaskListModal = () => {
           onChange={(e) => {
             dispatch({ type: "ADD_TASKS_TITLE", payload: e.target.value });
           }}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              fetch(`/api/tasks`, {
+                method: "POST",
+                body: JSON.stringify({
+                  all_task: [],
+                  total_completed: 0,
+                  title: tasks_title,
+                }),
+              }).then(async (res) => {
+                const tasks: Tasks = await res.json();
+                dispatch({ type: "ADD_TASKS", payload: tasks });
+              });
+            }
+          }}
           type="text"
           placeholder="New list"
         />
@@ -30,7 +46,19 @@ const AddTaskListModal = () => {
         </button>
         <button
           onClick={() => {
-            dispatch({ type: "ADD_TASKS" });
+            if (tasks_title) {
+              fetch(`/api/tasks`, {
+                method: "POST",
+                body: JSON.stringify({
+                  all_task: [],
+                  total_completed: 0,
+                  title: tasks_title,
+                }),
+              }).then(async (res) => {
+                const tasks: Tasks = await res.json();
+                dispatch({ type: "ADD_TASKS", payload: tasks });
+              });
+            }
           }}
           className="btn"
         >

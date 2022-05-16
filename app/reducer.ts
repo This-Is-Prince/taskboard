@@ -1,16 +1,18 @@
 import { useReducer, Reducer } from "react";
-import { Action, State, Task, Tasks } from "../types/types";
+import { Action, State, Tasks } from "../types/types";
 import state from "./state";
 
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
+    case "ADD_TASKS_LIST":
+      return { ...state, tasks_list: action.payload };
     case "OPEN_ADD_TASK_LIST_MODAL":
       return { ...state, isAddTaskListModalOpen: action.payload };
     case "DELETE_TASKS":
       return {
         ...state,
-        tasks_list: state.tasks_list.filter(({ id }) => {
-          return id !== action.payload;
+        tasks_list: state.tasks_list.filter(({ _id }) => {
+          return _id !== action.payload;
         }),
       };
     case "TASK_IS_COMPLETED":
@@ -18,9 +20,9 @@ const reducer: Reducer<State, Action> = (state, action) => {
         ...state,
         tasks_list: state.tasks_list.map((tasks) => {
           const { task_id, tasks_id, value } = action.payload;
-          if (tasks.id === tasks_id) {
+          if (tasks._id === tasks_id) {
             const result = tasks.all_task.map((task) => {
-              if (task_id === task.id) {
+              if (task_id === task._id) {
                 return { ...task, isCompleted: value };
               } else {
                 return { ...task };
@@ -48,15 +50,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     case "ADD_TASKS_TITLE":
       return { ...state, tasks_title: action.payload };
     case "ADD_TASKS":
-      const tasks_list: Tasks[] = [
-        ...state.tasks_list,
-        {
-          all_task: [],
-          total_completed: 0,
-          title: state.tasks_title,
-          id: state.tasks_list.length,
-        },
-      ];
+      const tasks_list = [...state.tasks_list, action.payload];
       return {
         ...state,
         tasks_list,
@@ -68,19 +62,16 @@ const reducer: Reducer<State, Action> = (state, action) => {
         ...state,
         isAddTaskModalOpen: false,
         tasks_list: state.tasks_list.map((tasks) => {
-          if (tasks.id === state.tasks_id) {
+          if (tasks._id === state.tasks_id) {
             return {
               ...tasks,
-              all_task: [
-                ...tasks.all_task,
-                { ...state.task, id: tasks.all_task.length },
-              ],
+              all_task: action.payload,
             };
           } else {
             return { ...tasks };
           }
         }),
-        task: { title: "", date: "", desc: "", id: 0, isCompleted: false },
+        task: { title: "", date: "", desc: "", _id: 0, isCompleted: false },
         tasks_id: 0,
       };
     case "EDIT_TASK":
@@ -88,24 +79,43 @@ const reducer: Reducer<State, Action> = (state, action) => {
         ...state,
         isAddTaskModalOpen: false,
         tasks_list: state.tasks_list.map((tasks) => {
-          if (tasks.id === state.tasks_id) {
+          if (tasks._id === state.tasks_id) {
             return {
               ...tasks,
-              all_task: tasks.all_task.map((task) => {
-                if (task.id === state.task.id) {
-                  return { ...state.task };
-                } else {
-                  return { ...task };
-                }
-              }),
+              all_task: action.payload,
             };
           } else {
             return { ...tasks };
           }
         }),
-        task: { title: "", date: "", desc: "", id: 0, isCompleted: false },
+        task: { title: "", date: "", desc: "", _id: 0, isCompleted: false },
         tasks_id: 0,
       };
+    case "DELETE_TASK":
+      const { tasks_id, task_id } = action.payload;
+      const list: Tasks[] = state.tasks_list.map((tasks) => {
+        if (tasks._id === tasks_id) {
+          let isCompleted = false;
+          const all_task = tasks.all_task.filter((task) => {
+            if (task._id === task_id) {
+              isCompleted = task.isCompleted;
+              return false;
+            } else {
+              return true;
+            }
+          });
+          return {
+            ...tasks,
+            all_task,
+            total_completed: isCompleted
+              ? tasks.total_completed - 1
+              : tasks.total_completed,
+          };
+        } else {
+          return { ...tasks };
+        }
+      });
+      return { ...state, tasks_list: list };
     case "OPEN_ADD_TASK_MODAL":
       return {
         ...state,
@@ -120,7 +130,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
         isAddTaskModalOpen: false,
         tasks_id: 0,
         why: "FOR_ADD",
-        task: { date: "", desc: "", id: 0, isCompleted: false, title: "" },
+        task: { date: "", desc: "", _id: 0, isCompleted: false, title: "" },
       };
 
     case "SET_TASK":

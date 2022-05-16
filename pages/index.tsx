@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import AddTaskListButton from "../components/task/AddTaskListButton";
-import Header from "../components/Header";
-import TaskLists from "../components/task/TaskLists";
 import { Context } from "../app/context";
 import useGlobalReducer from "../app/reducer";
+import App from "../components/App";
 
 const Home: NextPage = () => {
   const [appState, dispatch] = useGlobalReducer();
@@ -20,9 +18,7 @@ const Home: NextPage = () => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Header />
-        <TaskLists />
-        <AddTaskListButton />
+        <App />
       </div>
     </Context.Provider>
   );

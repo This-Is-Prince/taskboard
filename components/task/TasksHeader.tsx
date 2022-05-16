@@ -4,7 +4,7 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { TasksHeaderProps } from "../../types/types";
 import useGlobalContext from "../../app/context";
 
-const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
+const TasksHeader: FC<TasksHeaderProps> = ({ title, _id }) => {
   const {
     appState: { task },
     dispatch,
@@ -14,7 +14,12 @@ const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
       <span>{title}</span>
       <button
         onClick={() => {
-          dispatch({ type: "DELETE_TASKS", payload: id });
+          fetch(`/api/tasks`, {
+            method: "DELETE",
+            body: `${_id}`,
+          }).then(() => {
+            dispatch({ type: "DELETE_TASKS", payload: _id });
+          });
         }}
         className="btn info-btn"
       >
@@ -22,11 +27,11 @@ const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
       </button>
       <div className="add-task">
         <button
-          id={`add-task-${id}`}
+          id={`add-task-${_id}`}
           onClick={() => {
             dispatch({
               type: "OPEN_ADD_TASK_MODAL",
-              id,
+              id: _id,
               why: "FOR_ADD",
               payload: { ...task },
             });
@@ -35,7 +40,7 @@ const TasksHeader: FC<TasksHeaderProps> = ({ title, id }) => {
         >
           <AiFillPlusCircle />
         </button>
-        <label htmlFor={`add-task-${id}`}>Add a task</label>
+        <label htmlFor={`add-task-${_id}`}>Add a task</label>
       </div>
     </article>
   );

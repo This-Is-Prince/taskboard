@@ -3,7 +3,7 @@ import { Dispatch } from "react";
 interface Tasks {
   title: string;
   all_task: Task[];
-  id: string | number;
+  _id: string | number;
   total_completed: number;
 }
 
@@ -11,19 +11,19 @@ interface Task {
   date: string;
   desc: string;
   title: string;
-  id: string | number;
+  _id: string | number;
   isCompleted: boolean;
 }
 
 interface TasksHeaderProps {
   title: string;
-  id: string | number;
+  _id: string | number;
 }
 
 interface TasksProps {
   title: string;
   all_task: Task[];
-  id: string | number;
+  _id: string | number;
   total_completed: number;
 }
 
@@ -61,9 +61,14 @@ type Action =
       };
     }
   | { type: "ADD_TASKS_TITLE"; payload: string }
-  | { type: "ADD_TASKS" }
-  | { type: "ADD_TASK" }
-  | { type: "EDIT_TASK" }
+  | { type: "ADD_TASKS"; payload: Tasks }
+  | { type: "ADD_TASKS_LIST"; payload: Tasks[] }
+  | { type: "ADD_TASK"; payload: Task[] }
+  | { type: "EDIT_TASK"; payload: Task[] }
+  | {
+      type: "DELETE_TASK";
+      payload: { tasks_id: string | number; task_id: string | number };
+    }
   | {
       type: "OPEN_ADD_TASK_MODAL";
       id: string | number;

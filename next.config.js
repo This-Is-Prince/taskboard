@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: { domains: ["picsum.photos"] },
+  typescript: { ignoreBuildErrors: true },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

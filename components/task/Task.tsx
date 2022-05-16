@@ -18,9 +18,21 @@ const Task: FC<TaskProps> = ({
     <article className="task">
       <button
         onClick={() => {
-          dispatch({
-            type: "TASK_IS_COMPLETED",
-            payload: { task_id, tasks_id, value: !isCompleted },
+          fetch(`/api/task`, {
+            method: "PUT",
+            body: JSON.stringify({
+              tasks_id,
+              task_id,
+              value: !isCompleted,
+            }),
+          }).then(async (res) => {
+            const data = await res.json();
+            if (data === "success") {
+              dispatch({
+                type: "TASK_IS_COMPLETED",
+                payload: { task_id, tasks_id, value: !isCompleted },
+              });
+            }
           });
         }}
         className={`btn complete-btn ${isCompleted && "complete"}`}
@@ -30,7 +42,27 @@ const Task: FC<TaskProps> = ({
       <div className="header">
         <span className={`name ${isCompleted && "complete"}`}>{title}</span>
         {isCompleted ? (
-          <button className="btn delete-btn">
+          <button
+            onClick={() => {
+              fetch(`/api/task`, {
+                method: "DELETE",
+                body: JSON.stringify({
+                  tasks_id,
+                  task_id,
+                  value: isCompleted,
+                }),
+              }).then(async (res) => {
+                const data = await res.json();
+                if (data === "success") {
+                  dispatch({
+                    type: "DELETE_TASK",
+                    payload: { task_id, tasks_id },
+                  });
+                }
+              });
+            }}
+            className="btn delete-btn"
+          >
             <MdDeleteForever />
           </button>
         ) : (
@@ -40,7 +72,7 @@ const Task: FC<TaskProps> = ({
                 type: "OPEN_ADD_TASK_MODAL",
                 id: tasks_id,
                 why: "FOR_EDIT",
-                payload: { date, desc, id: task_id, isCompleted, title },
+                payload: { date, desc, _id: task_id, isCompleted, title },
               });
             }}
             className="btn edit-btn"

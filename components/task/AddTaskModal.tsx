@@ -4,12 +4,14 @@ import { IoMdClose } from "react-icons/io";
 import { ImCheckmark } from "react-icons/im";
 import { AiFillPlusCircle } from "react-icons/ai";
 import useGlobalContext from "../../app/context";
+import { Task } from "../../types/types";
 
 const AddTaskModal = () => {
   const {
     appState: {
       why,
-      task: { date, desc, title },
+      task: { date, desc, title, _id: task_id },
+      tasks_id,
     },
     dispatch,
   } = useGlobalContext()!;
@@ -71,9 +73,32 @@ const AddTaskModal = () => {
           <button
             onClick={() => {
               if (why === "FOR_ADD") {
-                dispatch({ type: "ADD_TASK" });
+                if (title) {
+                  fetch(`/api/task`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                      tasks_id,
+                      task: { title, date, desc },
+                    }),
+                  }).then(async (res) => {
+                    const all_task: Task[] = await res.json();
+                    dispatch({ type: "ADD_TASK", payload: all_task });
+                  });
+                }
               } else {
-                dispatch({ type: "EDIT_TASK" });
+                if (title) {
+                  fetch(`/api/task`, {
+                    method: "PUT",
+                    body: JSON.stringify({
+                      tasks_id,
+                      task_id,
+                      task: { title, date, desc },
+                    }),
+                  }).then(async (res) => {
+                    const all_task: Task[] = await res.json();
+                    dispatch({ type: "EDIT_TASK", payload: all_task });
+                  });
+                }
               }
             }}
             className="btn add"

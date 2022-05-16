@@ -12,11 +12,11 @@ const TaskLists = () => {
   return (
     <>
       <main className="task-lists">
-        {tasks_list.map(({ all_task, title, total_completed, id }) => {
+        {tasks_list.map(({ all_task, title, total_completed, _id }) => {
           return (
             <Tasks
-              id={id}
-              key={id}
+              _id={_id}
+              key={_id}
               title={title}
               all_task={all_task}
               total_completed={total_completed}
